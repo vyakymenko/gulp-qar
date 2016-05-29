@@ -1,0 +1,32 @@
+{
+  "name": "gulp-qar",
+  "version": "1.0.0",
+  "description": "Qar installer generator for QlikView Extensions",
+  "main": "index.js",
+  "dependencies": {
+    "concat-stream": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1",
+    "yazl": "^2.3.1"
+  },
+  "devDependencies": {
+    "gulp": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vyakymenko/gulp-qar.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "qar",
+    "archive",
+    "compress",
+    "qlikview"
+  ],
+  "author": "Valentyn Yakymenko <rayfesoul@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vyakymenko/gulp-qar/issues"
+  },
+  "homepage": "https://github.com/vyakymenko/gulp-qar#readme"
+}
