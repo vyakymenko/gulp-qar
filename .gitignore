@@ -1,11 +1,8 @@
 # Idea files
-#.idea/
-
-# Cache files
-#Thumbs.db
+.idea/
 
 # Node modules
-#node_modules
+node_modules
 
 # Build/Target Files
-#dist/
+dist/
