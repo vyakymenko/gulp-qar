@@ -1,6 +1,9 @@
 'use strict';
+
 var path = require('path'),
 	gutil = require('gulp-util'),
+	PluginError = gutil.PluginError,
+	File = gutil.File,
 	through = require('through2'),
 	archiver = require('archiver'),
 	concatStream = require('concat-stream');
@@ -12,7 +15,7 @@ module.exports = function (file) {
 
 	return through.obj(function(file, enc, cb) {
 		if (file.isStream()) {
-			this.emit('error', new gutil.PluginError('gulp-qar: ',  'Streaming not supported.'));
+			this.emit('error', new PluginError('gulp-qar: ',  'Streaming not supported.'));
 			cb();
 			return;
 		}
@@ -34,7 +37,7 @@ module.exports = function (file) {
 
 		archive.finalize();
 		archive.pipe(concatStream(function(data) {
-			this.push(new gutil.File({
+			this.push(new File({
 				cwd: firstFile.cwd,
 				base: firstFile.base,
 				path: path.join(firstFile.base, fileName+'.qar'),
