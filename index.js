@@ -1,67 +1,44 @@
 'use strict';
 var path = require('path'),
+	fs = require('fs'),
 	gutil = require('gulp-util'),
-	through = require('through2'),
-	Yazl = require('yazl'),
-	concatStream = require('concat-stream');
+	map = require('map-stream'),
+	archiver = require('archiver');
 
 module.exports = function (extensionName) {
+	return map(function (file, cb) {
 
-	var firstFile,
-		zip = new Yazl.ZipFile();
+		extensionName = extensionName || file.relative;
 
-	return through.obj(function (file, enc, cb) {
-		if (!firstFile) {
-			firstFile = file;
+		if (file.isStream()) {
+			return cb(new gutil.PluginError('gulp-qar', 'Streaming not supported'));
 		}
 
-		var pathname = file.relative.replace(/\\/g, '/');
-			extensionName = extensionName || pathname;
+		var output = fs.createWriteStream(extensionName+'.qar'),
+			archive = archiver('zip');
 
-		if (!pathname) {
-			cb();
-			return;
-		}
+		output.on('close', function () {
+			gutil.log('gulp-qar:', gutil.colors.green('✔ ') + extensionName + ' instalation created. Size: '+ archive.pointer() + ' total bytes');
+			// CB
+			cb(null, file);
+		});
 
-		if (file.isNull() && file.stat && file.stat.isDirectory && file.stat.isDirectory()) {
-			zip.addEmptyDirectory(pathname, {
-				mtime: file.stat.mtime || new Date(),
-				mode: file.stat.mode
-			});
-		} else {
-			var stat = {
-				compress: true,
-				mtime: file.stat ? file.stat.mtime : new Date(),
-				mode: file.stat ? file.stat.mode : null
-			};
+		archive.on('error', function(err){
+			return cb(new gutil.PluginError('gulp-qar:', err));
+		});
 
-			if (file.isStream()) {
-				zip.addReadStream(file.contents, pathname, stat);
-			}
+		// console.log(file.path);
+		// console.log(file.relative);
+		// console.log(file.contents);
+		// console.log('Base and CWD');
+		// console.log(file.cwd);
+		// console.log(file.base);
+		// console.log(file);
+		//
+		// // console.log(path.extname(file.path));
 
-			if (file.isBuffer()) {
-				zip.addBuffer(file.contents, pathname, stat);
-			}
-		}
-
-		cb();
-	}, function (cb) {
-		if (!firstFile) {
-			cb();
-			return;
-		}
-
-		zip.end(function () {
-			zip.outputStream.pipe(concatStream(function (data) {
-				this.push(new gutil.File({
-					cwd: firstFile.cwd,
-					base: firstFile.base,
-					path: path.join(firstFile.base, extensionName+'.qar'),
-					contents: data
-				}));
-
-				cb();
-			}.bind(this)));
-		}.bind(this));
+		archive.pipe(output);
+		archive.directory(file.path, extensionName);
+		archive.finalize();
 	});
 };

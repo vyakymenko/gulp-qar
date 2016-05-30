@@ -33,8 +33,6 @@ gulp.task('default', function () {
 
 ## API
 
-Supports [streaming mode](https://github.com/gulpjs/gulp/blob/master/docs/API.md#optionsbuffer).
-
 ### qar(extensionName)
 
 ### Optional
