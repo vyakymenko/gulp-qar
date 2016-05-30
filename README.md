@@ -5,10 +5,10 @@
 [![Dependency Status](https://david-dm.org/vyakymenko/gulp-qar.svg)](https://david-dm.org/vyakymenko/gulp-qar)
 [![devDependency Status](https://david-dm.org/vyakymenko/gulp-qar/dev-status.svg)](https://david-dm.org/vyakymenko/gulp-qar#info=devDependencies)
 
-> Qar installer generator for QlikView Extensions
+> Gulp Qar installer generator for QlikView Extensions
 
 ## Version
-v 1.0.1
+v 1.0.2
 
 ## Install
 
@@ -24,7 +24,7 @@ var gulp = require('gulp'),
 	qar = require('gulp-qar');
 
 gulp.task('default', function () {
-	return gulp.src('test/ExtensionExample/**/**', {base: "./test"})
+	return gulp.src('test/ExtensionExample')
 		.pipe(qar())
 		.pipe(gulp.dest('dist'));
 });
