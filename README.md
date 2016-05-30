@@ -8,7 +8,7 @@
 > Qar installer generator for QlikView Extensions
 
 ## Version
-v 1.0.0
+v 1.0.1
 
 ## Install
 
