@@ -12,9 +12,7 @@ module.exports = function (file) {
 
 	return through.obj(function(file, enc, cb) {
 		if (file.isStream()) {
-			this.emit('error', new gutil.PluginError('gulp-qar: ',  'Streaming not supported.'));
-			cb();
-			return;
+			return cb(new gutil.PluginError('gulp-qar: ', 'Streaming not supported'));
 		}
 
 		if (!firstFile) {

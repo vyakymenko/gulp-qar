@@ -1,7 +1,7 @@
 {
   "name": "gulp-qar",
-  "version": "1.0.2",
-  "description": "Qar installer generator for QlikView Extensions",
+  "version": "1.0.3",
+  "description": "Gulp Qar installer generator for QlikView Extensions",
   "main": "index.js",
   "dependencies": {
     "archiver": "^1.0.0",
