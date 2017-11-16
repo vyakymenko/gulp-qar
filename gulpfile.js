@@ -1,5 +1,5 @@
-var gulp = require('gulp'),
-	qar = require('./');
+const gulp = require('gulp'),
+		qar = require('./');
 
 gulp.task('default', function () {
 	return gulp.src('test/ExtensionExample')
