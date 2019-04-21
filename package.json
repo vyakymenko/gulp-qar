@@ -11,7 +11,7 @@
     "through2": "^3.0.0"
   },
   "devDependencies": {
-    "gulp": "*"
+    "gulp": ">=4.0.1"
   },
   "repository": {
     "type": "git",
