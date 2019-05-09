@@ -9,6 +9,8 @@
 
 > Gulp Qar installer generator for QlikView Extensions
 
+## SUPPORT DEPRECATED
+
 ## Version
 v 1.0.5
 

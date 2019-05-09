@@ -1,8 +1,8 @@
 const gulp = require('gulp'),
-		qar = require('./');
+	qar = require('./');
 
-gulp.task('default', function () {
-	return gulp.src('test/ExtensionExample')
+gulp.task('default',
+	gulp.src('test/ExtensionExample')
 		.pipe(qar())
-		.pipe(gulp.dest('dist'));
-});
+		.pipe(gulp.dest('dist'))
+);
