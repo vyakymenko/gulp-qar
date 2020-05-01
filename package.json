@@ -8,7 +8,8 @@
     "concat-stream": "^2.0.0",
     "gulp-util": "^3.0.7",
     "path": "^0.12.7",
-    "through2": "^3.0.0"
+    "through2": "^3.0.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "gulp": "*"
@@ -29,5 +30,10 @@
   "bugs": {
     "url": "https://github.com/vyakymenko/gulp-qar/issues"
   },
-  "homepage": "https://github.com/vyakymenko/gulp-qar#readme"
+  "homepage": "https://github.com/vyakymenko/gulp-qar#readme",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
