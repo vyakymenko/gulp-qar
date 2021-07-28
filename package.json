@@ -9,7 +9,7 @@
     "gulp-util": "^3.0.7",
     "path": "^0.12.7",
     "through2": "^3.0.0",
-    "snyk": "^1.425.4"
+    "snyk": "^1.667.0"
   },
   "devDependencies": {
     "gulp": "*"
